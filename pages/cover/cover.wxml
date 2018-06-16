@@ -1,10 +1,11 @@
 <view class="container">
   <view class="title">
-    我爱世界杯{{leftTime.days+','+leftTime.hours+','+leftTime.minutes+','+leftTime.seconds}}
+    加入你的球队
+    <!-- {{leftTime.days+','+leftTime.hours+','+leftTime.minutes+','+leftTime.seconds}} -->
   </view>
   <view class="view-football {{footballClass}}" bindanimationend="navigateToAvatar">
     <button class="button-football" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-      <image class="img-football" mode="widthFix" src="../../images/football/football.png"/>
+      <image class="img-football" mode="aspectFit" src="../../images/football.png"/>
     </button>
   </view>
 </view>

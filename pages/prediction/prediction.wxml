@@ -1,0 +1,35 @@
+<!--index.wxml-->
+ <view class="banner">
+  <view class="content">
+    {{userName}},您预测了{{predictionCounts}}场比赛，猜对胜负{{correctVictoryCounts}}场，击败了{{beatUsers}}的用户
+  </view>
+</view>
+<view class="container">
+  <view wx:for="{{matches}}" wx:for-item="match" class="match-title" data-match="{{match}}" bindtap="prediction">
+    <view class="left">
+      <view class="flags">
+        <view class="home">
+          <image wx:if="{{flags}}" class="flag" mode="widthFix" src="{{folder+flags[match['name'][0]]+'f'+'.png'}}"></image>
+        </view>
+        <view class="middle"><view class="vs">vs</view></view>
+        <view class="guest">
+          <image wx:if="{{flags}}" class="flag" mode="widthFix" src="{{folder+flags[match['name'][1]]+'f'+'.png'}}"></image>
+        </view>
+      </view>
+      <view style="width: 20rpx; height: 20rpx;"><view wx:if="{{match.haveDone===0 && !isClicked}}" class="red-circle"></view></view>
+    </view>
+    <view class="title">
+      <view class="head">
+        {{match['group']}}组{{match['name'][0]}}vs{{match['name'][1]}}
+      </view>
+      <view class="tip">
+        谁输谁赢，点击预测！
+      </view>
+    </view>
+    <view class="time">
+      <view class="day">{{match['time']['day']}}</view>
+      <view class="hour">{{match['time']['hour']}}</view>
+    </view>
+  </view>
+</view> 
+<view style='margin:0 auto;color:white;text-align:center;padding:50rpx;height:100%;background: url(https://sklang.cloudms.cn/img/darkbluebg.png)'>你的队伍尚未出征...</view>

@@ -16,7 +16,7 @@ html{
 .view-football{
   width: 25%;
   height: 20%;
-  padding-bottom: 5%;
+  padding-bottom: 30%;
 }
 .button-football {
   background: none;
@@ -50,11 +50,11 @@ html{
     animation-timing-function: ease-out;
   }
   40% {
-    transform: translateY(-200%) scale(0.4);
+    transform: translateY(-150%) scale(0.4);
     animation-timing-function: ease-in;
   }
   100% {
-    transform: translateY(-50%) scale(0.2);
+    transform: translateY(-15%) scale(0.15);
   }
 }
 .img-football {

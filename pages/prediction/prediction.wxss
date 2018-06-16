@@ -1,0 +1,104 @@
+/**index.wxss**/
+.banner {
+	background-image: url("https://sklang.cloudms.cn/img/darkbluebg.png");
+	background-size: cover;
+	color: #f7f5cc;
+	padding: 20rpx 0;
+}
+.content {
+	text-align: center;
+}
+.container {
+	width: 750rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 0;
+}
+.match-title {
+	width: 750rpx;
+	height: 150rpx;
+	border-bottom: 1px solid rgb(200, 200, 200);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.left {
+	display: flex;
+}
+.flags {
+	display: flex;
+	flex-direction: column;
+	margin-left: 30rpx;
+	height: 130rpx;
+	width: 130rpx;
+}
+.flag {
+	width: 100rpx;
+	display: block;
+}
+.middle{
+	height: 30rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.home {
+	margin-top: 5rpx;
+	margin-left: 5rpx;
+
+}
+.guest {
+	margin-left: auto;
+	margin-right: 5rpx;
+	margin-bottom: 5rpx;
+	margin-top: auto;
+}
+.vs {
+	color: red;
+	font-size: 30rpx;
+	height: 30rpx;
+	line-height: 30rpx;
+}
+.red-circle {
+	width: 20rpx;
+	height: 20rpx;
+	border-radius: 10rpx 10rpx;
+	background-color: #f00; 
+}
+.title {
+	margin-left: 30rpx;
+}
+.head {
+	font-size: 1em;
+}
+.tip {
+	font-size: 0.8em;
+	color: rgb(200, 200, 200);
+}
+.time {
+	margin-right: 30rpx;
+	margin-left: auto;
+	font-size: 0.8em;
+	color: rgb(200, 200, 200);
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}

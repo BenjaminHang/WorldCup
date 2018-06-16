@@ -2,12 +2,30 @@
   "pages":[
     "pages/cover/cover",
     "pages/avatar/avatar",
-    "pages/logs/logs"
+    "pages/prediction/prediction",
+    "pages/poster/poster",
+    "pages/cropper/cropper"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/avatar/avatar",
+        "text": "世界杯头像"
+      },
+      {
+        "pagePath": "pages/prediction/prediction",
+        "text": "世界杯预测"
+      }
+    ],
+    "position": "top",
+    "backgroundColor": "#0f4482",
+    "color": "#fff",
+    "selectedColor": "#0f0"
   }
 }

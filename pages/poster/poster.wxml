@@ -1,0 +1,50 @@
+<canvas canvas-id='generatePoster' style='width:750rpx;height:750rpx;transform:scale(0.5)'></canvas>
+<view class="container">
+	<view class="title">
+		<view class="first">2018世界杯{{match.name[0]}}vs{{match.name[1]}}</view>
+		<view class="second">我的预测是</view>
+	</view>
+	<view wx:if="{{match}}" class="match">
+		<view class="head">
+			{{match.group + ' '}}组
+		</view>
+		<view class="body">
+			<view wx:if="{{match.haveDone!==2}}" class="group">
+				{{date}}
+			</view>
+			<view wx:else class="group">
+				比赛已结束
+			</view>
+			<view class="content">
+				<view>
+					<image class="flag" mode="widthFix" src="{{path+flags[0]+'f.png'}}"></image>
+					<view class="country">{{match.name[0]}}</view>
+				</view>
+				<view wx:if="{{match.haveDone===0}}" class="score">
+					<input bindchange="updateScore" data-id="0" value="{{match.userPrediction[0]}}"/>
+					:
+					<input bindchange="updateScore" data-id="1" value="{{match.userPrediction[0]}}"/>
+				</view>
+				<view wx:else class="score">
+					<input disabled="true" value="{{match.userPrediction[0]}}" class="haveDone"/>
+					:
+					<input disabled="true" value="{{match.userPrediction[1]}}" class="haveDone"/>
+				</view>
+				<view>
+					<image class="flag" mode="widthFix" src="{{path+flags[1]+'f.png'}}"></image>
+					<view class="country">{{match.name[1]}}</view>
+				</view>
+			</view>
+			<view wx:if="{{match.haveDone!==2}}" class="tips">
+				预测最多的比分是{{mostPopularPrediction[0]+" : "+mostPopularPrediction[1]}}
+			</view>
+			<view wx:else class="tips">
+				比赛结果是{{match.score[0]+" : "+match.score[1]}}
+			</view>
+		</view>
+		<view class="foot"></view>
+	</view>
+	<view>
+		<button bindtap="saveImage">保存图片</button>
+	</view>
+</view>

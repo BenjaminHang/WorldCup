@@ -46,30 +46,39 @@ html{
 .container {
   width: 100%;
   height: 100%;
-  /* background-repeat: no-repeat; */
+  padding-top: 30rpx;
+  padding-bottom: 120rpx;
+  /* background-repeat: no-repeat;  */
   background-size: 100%;
-  background-image: url("https://sklang.cloudms.cn/img/darkbluebg.png");  
+  background-image: url("https://sklang.cloudms.cn/img/darkbluebg.png");
+  position: relative;
 }
 .loadpage {
   width: 100%;
-  margin-top: 30%;
+  height: 100%;
+  padding-top: 30%;
+  background-color: #0f4482;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("https://sklang.cloudms.cn/img/darkbluebg.png"); 
   color: white;
   font-size: 1.5em;
   text-align: center;
 }
 
 .loadAnimate{
-  width: 320rpx;
-  height: 160rpx;
+  width: 320px;
+  height: 160px;
 }
 
 .animateCup {
-  height: 100rpx;
-  margin-top: 30rpx;
+  height: 100px;
+  margin-top: 30px;
 }
 
 .loadText {
-  margin-top: 10rpx;
+  margin-top: 10px;
 }
 
 .first-point {
@@ -179,23 +188,16 @@ html{
   width: 300rpx;
   display: block;
 }
-.userAvatar {
-  margin-top: 40rpx;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 500rpx;
-}
 
 .middle {
   width: 500rpx;
   height: 500rpx;
-  margin: 15rpx auto 0 auto;
+  margin: 0 auto;
   /* border-radius: 50%; */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   overflow: hidden;
-  position: relative
+  position: relative;
 }
 
 .image-avatar {
@@ -312,7 +314,7 @@ html{
 .iconCards{
     position: relative;
     margin: 0rpx auto;
-    width: 360rpx;
+    width: 400rpx;
     height: 400rpx;
 }
 .card-left{
@@ -359,7 +361,7 @@ html{
 }
 .card-top{
     margin: 0 auto;
-    height: 20%;
+    height: 18%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -370,7 +372,7 @@ html{
 }
 .card-icons{
     margin: 0 auto;
-    height: 80%;
+    height: 82%;
     position: relative;
     background: rgb(250, 247, 242);
     display: flex;
@@ -380,13 +382,17 @@ html{
 }
 .card-icon{
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 25%;
-    height: 50rpx;
+    height: 70rpx;
     overflow: hidden;
     text-align: center;
 }
 .icon-img {
-  width: 50rpx;
+  width: 70rpx;
+  height:70rpx;
 }
 .card-bottom{
     position: absolute;
@@ -434,7 +440,7 @@ html{
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 40%;
+  width: 60%;
   font-size: 25rpx;
   color: white;
 }
@@ -531,12 +537,12 @@ html{
   z-index: 99;
 }
 .hidden-canvas{
-  position:fixed;
+  position:absolute;
   width: 500rpx; 
   height: 500rpx;
-  visibility:hidden;
+  top: -1000rpx;
 }
-.edit::after{
+.noHasIcon::after ,.edit::after{
   position: absolute;
   background: rgba(100,100,100,0.5);
   /* padding: 10rpx 15rpx; */
@@ -546,4 +552,10 @@ html{
   height: 100%;
   left: 0;
   top: 0;
+}
+.iconGrey{
+  opacity: 0.4
+}
+.noShow{
+  display: none
 }

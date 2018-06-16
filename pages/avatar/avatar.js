@@ -1,251 +1,132 @@
 //获取应用实例
 const app = getApp()
+const DATA = require('../../utils/data.js')
 var interval
-let icons = {
-  cup: [{
-    id: '',
-    name: '',
-    cupPath: '../../images/cup/cup.gif'
-  }],
-  football: [{
-    id: '',
-    name: '',
-    footballPath: '../../images/football/football.jpeg'
-  }],
-  mascot: [{
-    id: '',
-    name: '',
-    mascotPath: '../../images/mascot/mascot.jpeg'
-  }],
-  nations: [{
-    id: '',
-    name: '',
-    emblemPath: '../../images/nations/Brazil_emblem.jpeg',
-    flagPath: '../../images/nations/Brazil_flag.jpeg'
-  }],
-  others: [{
-    id: '',
-    name: '',
-    othersPath: 'others'
-  }]
-}
-let tagList = ['cup','football','mascot','emblem','flag','others']
-let params = {
-  canvasSize: []
-}
-let cards = [
-  {
-    "className": "card-left",
-    "title": "A组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card",
-    "title": "B组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-right",
-    "title": "C组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-righthidden",
-    "title": "D组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-righthidden",
-    "title": "E组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-righthidden",
-    "title": "F组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-righthidden",
-    "title": "G组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-  {
-    "className": "card-righthidden",
-    "title": "H组",
-    "icons": [
-      "../../images/arge.png", "../../images/ause.png",
-      "../../images/bele.png", "../../images/brae.png",
-      "../../images/argf.png", "../../images/ausf.png",
-      "../../images/belf.png", "../../images/braf.png",
-      "../../images/cole.png", "../../images/crce.png",
-      "../../images/croe.png", "../../images/dene.png",
-      "../../images/colf.png", "../../images/crcf.png",
-      "../../images/crof.png", "../../images/denf.png",
-    ],
-  },
-]
+let cards = DATA.cards
 
 Page({
   data: {
-    motto: 'Hello WorldCup, code changed',
     userInfo: null,
-    avatarUrl: '',
+    avatarUrl: null,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     saveImage: null,
     getRequest: 'before',
-    tagList: tagList,
-    showIcons: icons.nations,
     currentTag: 'emblem',
-    currentImage: '',
+    currentImage: null,
     selectedIcons: {},
     animationData: {},
     normalizedValue: null,
-    bgImage: '../../images/background/Russian.png',
     isReady: false,
-    cards: [],
+    cards: null,
     currentCard: 1,
     touchStart: 0,
-    status: 'select'
+    status: 'select',
+    iconCounts: 0,
+    COUNT: 0,
+
+    // olddistance: '',//上一次两个手指的距离
+    // newdistance: "",//本次两手指之间的距离，两个一减咱们就知道了滑动了多少，以及放大还是缩小（正负嘛）  
+    // diffdistance: '', //这个是新的比例，新的比例一定是建立在旧的比例上面的，给人一种连续的假象  
+    // Scale: 1,//图片放大的比例，
+    // baseHeight: '',       //原始高  
+    // baseWidth: '',        //原始宽 
+
+    
   },
 
   //事件处理函数
   onLoad: function () {
+
+
+    // const { cropperOpt } = this.data
+
+    // // 若同一个页面只有一个裁剪容器，在其它Page方法中可通过this.wecropper访问实例
+    // new WeCropper(cropperOpt)
+    //   .on('ready', (ctx) => {
+    //     console.log(`wecropper is ready for work!`)
+    //   })
+    //   .on('beforeImageLoad', (ctx) => {
+    //     console.log(`before picture loaded, i can do something`)
+    //     console.log(`current canvas context: ${ctx}`)
+    //     wx.showToast({
+    //       title: '上传中',
+    //       icon: 'loading',
+    //       duration: 20000
+    //     })
+    //   })
+    //   .on('imageLoad', (ctx) => {
+    //     console.log(`picture loaded`)
+    //     console.log(`current canvas context: ${ctx}`)
+    //     wx.hideToast()
+    //   })
+
+    // 若同一个页面由多个裁剪容器，需要主动做如下处理
+
+    // this.A = new WeCropper(cropperOptA)
+    // this.B = new WeCropper(cropperOptB)
+
+
+
+    var context = wx.createCanvasContext('loadCanvas')
+    this.drawCircle(0, context)
+    var i = 0 //闭包
+    var v = 0.2 * Math.PI
+    interval = setInterval(() => {
+      i++
+      this.drawCircle(v * i, context)
+    }, 200)
+
     this.data.cards = cards;
-    this.setData({ "cards": this.data.cards });
-    var reg = /\d+$/
-    var url = app.globalData.userInfo.avatarUrl.replace(reg, '0')
-    console.log(url)
-    //默认得到了用户信息
-    //下载用户头像
-    wx.downloadFile({
-      url: url,
-      //下载成功渲染页面
-      success: res => {
-        console.log(res),
-          //清除interval
-          clearInterval(interval)
-        //设置变量，页面内容更新
+
+    if (app.globalData.userInfo) {
+      setTimeout(() => {
+        clearInterval(interval)
         this.setData({
           userInfo: app.globalData.userInfo,
-          avatarPath: res.tempFilePath,
-          isReady: true
+          avatarUrl: app.globalData.avatar || {
+            url:app.globalData.userInfo.avatarUrl,
+            name: app.globalData.userInfo.avatarUrl},
+          hasUserInfo: true
         })
-        //绘制用户头像
-        //this.drawCanvas()
-      }
-    })
-    if (app.globalData.userInfo) {
-      console.log(66)
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-        avatarUrl: app.globalData.userInfo.avatarUrl
-      })
-      wx.downloadFile({
-        url: app.globalData.userInfo.avatarUrl,
-        success: res => {
-          console.log(77)
-        }
-      })
+      },500)
+      this.downloadAvatar(app.globalData.userInfo.avatarUrl)
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
-        console.log(11)
-        wx.downloadFile({
-          url: res.userInfo.avatarUrl,
-          success: resTemp => {
-            console.log(22)
-            app.globalData.userInfo = res.userInfo
-            this.setData({
-              userInfo: res.userInfo,
-              hasUserInfo: true,
-              avatarUrl: resTemp.tempFilePath
-            })
-          }
-        })
+        setTimeout(() => {
+          clearInterval(interval)
+          this.setData({
+            userInfo: app.globalData.userInfo,
+            avatarUrl: app.globalData.avatar || {
+              url: app.globalData.userInfo.avatarUrl,
+              name: app.globalData.userInfo.avatarUrl
+            },
+            hasUserInfo: true
+          })
+        },500)
+        this.downloadAvatar(app.globalData.userInfo.avatarUrl)
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          console.log(33)
-          wx.downloadFile({
-            url: res.userInfo.avatarUrl,
-            success: resTemp => {
-              console.log(44)
-              app.globalData.userInfo = res.userInfo
-              this.setData({
-                userInfo: res.userInfo,
-                hasUserInfo: true,
-                avatarUrl: resTemp.tempFilePath
-              })
-            }
-          })
+          let reg = /\d+$/
+          res.userInfo.avatarUrl = res.userInfo.avatarUrl.replace(reg, '0')
+          app.globalData.userInfo = res.userInfo
+          setTimeout(() => {
+            clearInterval(interval)
+            this.setData({
+              userInfo: res.userInfo,
+              hasUserInfo: true,
+              avatarUrl: app.globalData.avatar || {
+                url: res.userInfo.avatarUrl,
+                name: res.userInfo.avatarUrl
+              }
+            })
+          }, 500)
+          this.downloadAvatar(res.userInfo.avatarUrl)
         }
       })
     }
@@ -254,49 +135,61 @@ Page({
       this.setData({
         normalizedValue: app.globalData.systemInfo.screenWidth / 750
       })
-      console.log('sys',this.data.normalizedValue)
     }else{
       app.systemInfoReadyCallback = res => {
         this.setData({
           normalizedValue: res.screenWidth / 750
         })
-        console.log(this.data.normalizedValue)
       }
     }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true,
-      avatarUrl: e.detail.userInfo.avatarUrl
-    })
+      "cards": this.data.cards
+    });
+
+  },
+  downloadAvatar: function(url) {
     wx.downloadFile({
-      url: app.globalData.userInfo.avatarUrl,
+      url: url,
       success: res => {
-        console.log(88)
+        this.data.localAvatar = res.tempFilePath
+        if(this.downloadAvatarCallback){
+          this.downloadAvatarCallback(res)
+        }
       }
     })
   },
-  drawCanvas: function (e) {
+  drawCanvas: function (url) {
     let rate = this.data.normalizedValue
     let context = wx.createCanvasContext('userinfo-avatar1')
-    context.drawImage(this.data.avatarUrl, 0, 0, 500 * rate, 500 * rate)
-    for (let key in this.selectedIcons) {
-      context.translate(this.selectedIcons[key].position[0] + this.selectedIcons[key].size[0] / 2, this.selectedIcons[key].position[1] + this.selectedIcons[key].size[1]/2)
-      context.rotate(this.selectedIcons[key].rotate * Math.PI / 180)
-      this.selectedIcons[key].path && context.drawImage(this.selectedIcons[key].path, -this.selectedIcons[key].size[0] / 2, -this.selectedIcons[key].size[1] / 2, this.selectedIcons[key].size[0], this.selectedIcons[key].size[1])
-      context.rotate(-this.selectedIcons[key].rotate * Math.PI / 180)
-      context.translate(-this.selectedIcons[key].position[0] - this.selectedIcons[key].size[0] / 2, -this.selectedIcons[key].position[1] - this.selectedIcons[key].size[1] / 2)  
+    console.log(url)
+    context.drawImage(url, 0, 0, 500 * rate, 500 * rate)
+    for (let key in this.data.selectedIcons) {
+      context.translate(this.data.selectedIcons[key].position[0] + this.data.selectedIcons[key].size[0] / 2, this.data.selectedIcons[key].position[1] + this.data.selectedIcons[key].size[1]/2)
+      context.rotate(this.data.selectedIcons[key].rotate * Math.PI / 180)
+      this.data.selectedIcons[key].path && context.drawImage(this.data.selectedIcons[key].path, -this.data.selectedIcons[key].size[0] / 2, -this.data.selectedIcons[key].size[1] / 2, this.data.selectedIcons[key].size[0], this.data.selectedIcons[key].size[1])
+      context.rotate(-this.data.selectedIcons[key].rotate * Math.PI / 180)
+      context.translate(-this.data.selectedIcons[key].position[0] - this.data.selectedIcons[key].size[0] / 2, -this.data.selectedIcons[key].position[1] - this.data.selectedIcons[key].size[1] / 2)  
     }
     context.draw()
+    let arr = []
+    for(let key in this.data.selectedIcons){
+      arr.push({
+        id: key,
+        size: this.data.selectedIcons[key].size,
+        position: this.data.selectedIcons[key].position,
+        angle: this.data.selectedIcons[key].angle
+      })
+    }
     wx.request({
       url: 'https://sklang.cloudms.cn',
       method: 'POST',
       data: {
-        selectedIcons: this.selectedIcons,
-        userInfo: this.userInfo
+        icons: arr,
+        avatar: {
+          url: this.data.avatarUrl.name,
+          size: ['500rpx','500rpx']
+        },
+        userId: app.globalData.userId
       }
     })
   },
@@ -312,50 +205,50 @@ Page({
       destHeight: 500*rate,
       canvasId: 'userinfo-avatar1',
       success: res => {
-        console.log(res.tempFilePath)
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath
         })
-        this.setData({
-          saveImage: res.tempFilePath
-        })
+        this.data.saveImage = res.tempFilePath
       }
     })
   },
   saveAvatar: function(e){
-    this.drawCanvas(e)
-    this.saveCanvas(e)
+    if(e.currentTarget.dataset.status == 'edit') return
+    if (app.globalData.avatar){
+      this.drawCanvas(app.globalData.avatar.url)
+      this.saveCanvas(e)
+    }else{
+      if (this.data.localAvatar) {
+        this.drawCanvas(this.data.localAvatar)
+        this.saveCanvas(e)
+      } else {
+        this.downloadAvatarCallback = res => {
+          this.drawCanvas(this.data.localAvatar)
+          this.saveCanvas(e)
+        }
+      }
+    }
   },
-  switchTag: function(e) {
-    let tagName = e.target.dataset.tagname
-    let key = (tagName == 'emblem' || tagName == 'flag') ? 'nations' : tagName
-    this.setData({
-      currentTag: tagName,
-      showIcons: icons[key]
-    })
-  },
-
   selectOrNot: function(e) {
+    let counts = this.data.iconCounts
     let rate = this.data.normalizedValue
-    console.log(rate)
     let path = e.target.dataset.path
-    this.selectedIcons = this.selectedIcons ? this.selectedIcons : {}
-    this.selectedIcons[path] = this.selectedIcons[path] ? this.selectedIcons[path] : {}
     this.currentIcon = this.currentIcon ? this.currentIcon : path
-    this.selectedIcons[path] = {
-      path: this.selectedIcons[path].path ? null : path,
-      position: [0, 0],
-      size: [100*rate, 100*rate],
-      rotate: 0
+    if(this.data.selectedIcons[path].path){
+      this.data.selectedIcons[path].path = undefined
+      counts--
+    }else{
+      this.data.selectedIcons[path].path = path
+      counts++
     }
     let tempArr = []
-    for(let key in this.selectedIcons){
-      this.selectedIcons[key].path ? tempArr.push(key) : ''
+    for(let key in this.data.selectedIcons){
+      this.data.selectedIcons[key].path ? tempArr.push(key) : ''
     }
-    this.currentIcon = this.selectedIcons[path].path ? path : tempArr[tempArr.length-1]
-    console.log(this.selectedIcons, this.currentIcon)
+    this.currentIcon = this.data.selectedIcons[path].path ? path : tempArr[tempArr.length-1]
     this.setData({
-      selectedIcons: this.selectedIcons
+      selectedIcons: this.data.selectedIcons,
+      iconCounts: counts
     })
   },
 
@@ -366,57 +259,99 @@ Page({
   },
 
   move: function(e) {
-    let rate = this.data.normalizedValue
-    let [width,height] = this.selectedIcons[e.target.dataset.key].size
-    let dX = e.touches[0].pageX - this.startPositions[e.target.dataset.key][0]
-    let dY = e.touches[0].pageY - this.startPositions[e.target.dataset.key][1]
-    console.log(dX,dY)
-    this.selectedIcons[e.target.dataset.key].position = [dX + 0 > 300 - width ? 300 - width : (dX + 0 < 0 ? 0 : dX + 0), dY + 0 > 300 - height ? 300 - height : (dY + 0 < 0 ? 0 : dY + 0)]
-    this.setData({
-      selectedIcons: this.selectedIcons,
-    })
-    this.currentIcon = e.target.dataset.key
+    // this.data.counts = this.data.counts%3
+    console.log(e)
+    console.log(this.data.selectedIcons)
+    this.data.COUNT++
+    if(this.data.COUNT%3 == 1){
+      let rate = this.data.normalizedValue
+      let [width, height] = this.data.selectedIcons[e.target.dataset.key].size
+      let dX = e.touches[0].pageX - this.startPositions[e.target.dataset.key][0]
+      let dY = e.touches[0].pageY - this.startPositions[e.target.dataset.key][1]
+      let border = 500 * this.data.normalizedValue;
+      this.data.selectedIcons[e.target.dataset.key].position = [dX + 0 > border - width ? border - width : (dX + 0 < 0 ? 0 : dX + 0), dY + 0 > border - height ? border - height : (dY + 0 < 0 ? 0 : dY + 0)];
+      this.setData({
+        selectedIcons: this.data.selectedIcons,
+      })
+      this.currentIcon = e.target.dataset.key
+    }
   },
 
   getEndPosition: function(e) {
     this.currentIcon = e.target.dataset.key
+    let rate = this.data.normalizedValue
+    let [width, height] = this.data.selectedIcons[e.target.dataset.key].size
+    let dX = e.changedTouches[0].pageX - this.startPositions[e.target.dataset.key][0]
+    let dY = e.changedTouches[0].pageY - this.startPositions[e.target.dataset.key][1]
+    let border = 500 * this.data.normalizedValue;
+    this.data.selectedIcons[e.target.dataset.key].position = [dX + 0 > border - width ? border - width : (dX + 0 < 0 ? 0 : dX + 0), dY + 0 > border - height ? border - height : (dY + 0 < 0 ? 0 : dY + 0)]
+
+    this.setData({
+      selectedIcons: this.data.selectedIcons,
+    })
   },
 
   changeSize: function(e) {
-    console.log(e)
     if(!this.currentIcon) return
-    let speed = 10, ratio = this.selectedIcons[this.currentIcon].size[1] / this.selectedIcons[this.currentIcon].size[0]
+    let speed = 10, ratio = this.data.selectedIcons[this.currentIcon].size[1] / this.data.selectedIcons[this.currentIcon].size[0]
     if (e.currentTarget.dataset.direction == '-'){
-      this.selectedIcons[this.currentIcon].size = this.selectedIcons[this.currentIcon].size[0] < 11 ? this.selectedIcons[this.currentIcon].size : this.selectedIcons[this.currentIcon].size.map((item, index) => {return item - speed*(1-(1-ratio)*index)})
+      this.data.selectedIcons[this.currentIcon].size = this.data.selectedIcons[this.currentIcon].size[0] < 11 ? this.data.selectedIcons[this.currentIcon].size : this.data.selectedIcons[this.currentIcon].size.map((item, index) => {return item - speed*(1-(1-ratio)*index)})
     }else{
-      this.selectedIcons[this.currentIcon].size = this.selectedIcons[this.currentIcon].size[0] > 149 ? this.selectedIcons[this.currentIcon].size : this.selectedIcons[this.currentIcon].size.map((item, index) => {return item + speed * (1 - (1 - ratio) * index) })
+      this.data.selectedIcons[this.currentIcon].size = this.data.selectedIcons[this.currentIcon].size[0] > 149 ? this.data.selectedIcons[this.currentIcon].size : this.data.selectedIcons[this.currentIcon].size.map((item, index) => {return item + speed * (1 - (1 - ratio) * index) })
     }
     this.setData({
-      selectedIcons: this.selectedIcons
+      selectedIcons: this.data.selectedIcons
     })
   },
 
   iRotate: function(e) {
-    console.log(e)
     if (!this.currentIcon) return
     let speed = 5
-    this.selectedIcons[this.currentIcon].rotate += (e.currentTarget.dataset.direction == '+' ? -speed : speed)
+    this.data.selectedIcons[this.currentIcon].rotate += (e.currentTarget.dataset.direction == '+' ? -speed : speed)
     this.setData({
-      selectedIcons: this.selectedIcons
+      selectedIcons: this.data.selectedIcons
     })
   },
 
   imageFromAlbum: function(e) {
+    // wx.chooseImage({
+    //   count: 1,
+    //   success: res => {
+    //     this.setData({
+    //       avatarUrl: res.tempFilePaths[0]
+    //     })
+    //     wx.uploadFile({
+    //       url: 'https://sklang.cloudms.cn',
+    //       filePath: res.tempFilePaths[0],
+    //       name: 'imageFromAlbum',
+    //     })
+    //   }
+    // })
     wx.chooseImage({
       count: 1,
-      success: res => {
-        this.setData({
-          avatarUrl: res.tempFilePaths[0]
-        })
-        wx.uploadFile({
-          url: 'https://sklang.cloudms.cn',
-          filePath: res.tempFilePaths[0],
-          name: 'imageFromAlbum',
+      sizeType: ['original'],
+      success: function (res) {
+        // wx.getImageInfo({
+        //   src: res.tempFilePaths[0],
+        //   success: function (res) {
+            //console.log(res.width);
+            //console.log(res.height);
+            // var str = res.width / res.height;
+            // if(str > 1){//横版图片
+            //   _this.data.height = 400;//图片的显示高度为400
+            //   _this.data.width = str * _this.data.height; //图片的宽度 = 宽高比 * 图片的显示高度
+
+            // }else{//竖版图片
+            //   _this.data.width = 400;//图片的显示宽度为400
+            //   _this.data.height = str * _this.data.width; //图片的高度 = 宽高比 * 图片的显示宽度
+            // }
+           
+        //   }
+        // })
+        const src = res.tempFilePaths[0]
+
+        wx.redirectTo({
+          url: `../cropper/cropper?src=${src}`
         })
       }
     })
@@ -438,14 +373,7 @@ Page({
 
   },
   onReady: function () {
-    var context = wx.createCanvasContext('loadCanvas')
-    this.drawCircle(0, context)
-    var i = 0 //闭包
-    var v = 0.1 * Math.PI
-    interval = setInterval(() => {
-      i++
-      this.drawCircle(v * i, context)
-    }, 500)
+    
   },
 
   touchStart: function (e) {
@@ -464,9 +392,7 @@ Page({
   mynext: function (e) {
     this.turnTo(-1);
   },
-  test: function (e) {
-    console.log(e);
-  },
+
   turnTo: function (orientation) {
     let length = this.data.cards.length;
     let currentCard = this.data.currentCard;
@@ -495,6 +421,7 @@ Page({
   },
 
   editStatus: function(e){
+    if (e.currentTarget.dataset.status[0] == 'edit' || e.currentTarget.dataset.status[1] == 0) return
     this.setData({
       status: 'edit'
     })
@@ -503,6 +430,98 @@ Page({
     this.setData({
       status: 'select'
     })
-  }
+  },
+  getIconSize: function(e){
+    let rate = this.data.normalizedValue
+    if(!this.data.selectedIcons[e.target.dataset.path]){
+      this.data.selectedIcons[e.target.dataset.path] = {
+        path: undefined,
+        position: [0, 0],
+        size: [100 * rate, 100 * rate * e.detail.height / e.detail.width],
+        rotate: 0
+      }
+    }
+    this.setData({
+      selectedIcons: this.data.selectedIcons
+    })
+  },
+
+
+  scroll: function (e) {
+    var _this = this;
+    //当e.touches.length等于1的时候，表示是单指触摸，我们要的是双指
+    if (e.touches.length == 2) {//两个手指滑动的时候
+      var xMove = e.touches[1].clientX - e.touches[0].clientX;//手指在x轴移动距离
+      var yMove = e.touches[1].clientY - e.touches[0].clientY;//手指在y轴移动距离
+      var distance = Math.sqrt(xMove * xMove + yMove * yMove);//根据勾股定理算出两手指之间的距离  
+      if (_this.data.olddistance == 0) {
+        _this.data.olddistance = distance; //要是第一次就给他弄上值，什么都不操作  
+        // console.log("第一次");
+      } else {
+        _this.data.newdistance = distance; //第二次就可以计算它们的差值了  
+        _this.data.diffdistance = _this.data.newdistance - _this.data.olddistance;//两次差值
+        _this.data.olddistance = _this.data.newdistance; //计算之后更新比例  
+        _this.data.Scale = _this.data.oldscaleA + 0.005 * _this.data.diffdistance;//这条公式是我查阅资料后找到的，按照这条公式计算出来的比例来处理图片，能给用户比较好的体验
+        if (_this.data.Scale > 2.5) {//放大的最大倍数
+          return;
+        } else if (_this.data.Scale < 1) {//缩小不能小于当前
+          return;
+        }
+        //刷新.wxml ，每次相乘，都是乘以图片的显示宽高
+        _this.setData({
+          height: _this.data.baseHeight * _this.data.Scale,
+          width: _this.data.baseWidth * _this.data.Scale
+        })
+        _this.data.oldscaleA = _this.data.Scale;//更新比例 
+
+
+      }
+    }
+  },
+  //手指离开屏幕
+  endTou: function (e) {
+    this.data.olddistance = 0;//重置
+    this.getRect();
+  },
+
+  getRect: function () {
+    var _this = this;
+    wx.createSelectorQuery().select('.FilePath').boundingClientRect(function (rect) {
+      _this.data.x = Math.abs(rect.left);//x坐标
+      _this.data.y = Math.abs(rect.top);//y坐标
+    }).exec()
+  },
+
+  generate: function () {
+    var _this = this;
+    const ctx_A = wx.createCanvasContext('myCanvas_A');
+    var baseWidth = _this.data.baseWidth * _this.data.Scale;//图片放大之后的宽
+    var baseHeight = _this.data.baseHeight * _this.data.Scale;//图片放大之后的高
+    ctx_A.drawImage(_this.data.src, 0, 0, baseWidth, baseHeight);//我们要在canvas中画一张和放大之后的图片宽高一样的图片
+    ctx_A.draw();
+    wx.showToast({
+      title: '截取中...',
+      icon: 'loading',
+      duration: 10000
+    });//
+    setTimeout(function () {//给延时是因为canvas画图需要时间
+      wx.canvasToTempFilePath({//调用方法，开始截取
+        x: _this.data.x,
+        y: _this.data.y,
+        width: 400,
+        height: 400,
+        destWidth: 400,
+        destHeight: 400,
+        canvasId: 'myCanvas_A',
+        success: function (res) {
+          console.log(res.tempFilePath);
+        }
+      })
+    }, 2000)
+
+  },
+
+  
+
 })
 

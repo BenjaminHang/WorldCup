@@ -14,28 +14,19 @@ Page({
       seconds: '00'
     },
     footballClass: 'football-vibrate',
-    bgImage: '../../images/background/gate.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    wx.request({
-      url: 'https://sklang.cloudms.cn/hello',
-      success: res => {
-        console.log(res)
-      }
-    })
-    let interval = setInterval(() => {
-      let leftTime = util.leftTime(new Date(2018, 5, 14, 23, 0, 0) - new Date())
-      // console.log(leftTime)
-      this.setData({
-        leftTime: leftTime
-      })
-    }, 1000)
-    
+    // let interval = setInterval(() => {
+    //   let leftTime = util.leftTime(new Date(2018, 5, 14, 23, 0, 0) - new Date())
+    //   // console.log(leftTime)
+    //   this.setData({
+    //     leftTime: leftTime
+    //   })
+    // }, 1000) 
   },
 
   /**
@@ -88,11 +79,28 @@ Page({
   },
   //
   getUserInfo: function (e) {
-    console.log(e)
+    let reg = /\d+$/
+    e.detail.userInfo.avatarUrl = e.detail.userInfo.avatarUrl.replace(reg, '0')
     if (e.detail.userInfo) {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
         footballClass: 'football-shoot'
+      })
+      wx.request({
+        url: 'https://sklang.cloudms.cn/insertOneUser',
+        method: 'POST',
+        data: {
+          userId: app.globalData.userId,
+          userInfo: JSON.stringify(app.globalData.userInfo)
+        },
+        header: {
+          // 'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: res => {
+          console.log(res)
+        }
+
       })
     } else {
       console.log(e.detail.errMsg)
@@ -100,10 +108,12 @@ Page({
   },
   //跳转
   navigateToAvatar: function (e) {
-    wx.navigateTo({
+    wx.switchTab({
       url: '../avatar/avatar',
       success: () => {
-        console.log('跳转成功！')
+        this.setData({
+          footballClass: 'football-vibrate'
+        })
       }
     })
   }
