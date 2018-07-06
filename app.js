@@ -8,7 +8,7 @@ App({
         console.log(res)
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
-            url: 'https://sklang.cloudms.cn/login?code='+res.code,
+            url: 'https://xxxx.xxxxx.cn/login?code='+res.code,
             method: 'GET',
             // data: {
             //   code: res.code
@@ -31,22 +31,21 @@ App({
                         if (this.userInfoReadyCallback) {
                           this.userInfoReadyCallback(res)
                         }
-                  
-                        // wx.request({
-                        //   url: 'https://sklang.cloudms.cn/insertOneUser',
-                        //   method: 'POST',
-                        //   data: {
-                        //     userId: this.globalData.userId,
-                        //     userInfo: JSON.stringify(res)
-                        //   },
-                        //   header: {
-                        //     // 'content-type': 'application/json'
-                        //     'content-type': 'application/x-www-form-urlencoded'
-                        //   },
-                        //   success: res => {
-                        //     console.log(res)
-                        //   }
-                        // })
+                        wx.request({
+                          url: 'https://xxxx.xxxx.cn/insertOneUser',
+                          method: 'POST',
+                          data: {
+                            userId: this.globalData.userId,
+                            userInfo: JSON.stringify(res)
+                          },
+                          header: {
+                            // 'content-type': 'application/json'
+                            'content-type': 'application/x-www-form-urlencoded'
+                          },
+                          success: res => {
+                            console.log(res)
+                          }
+                        })
                       }
                     })
                   }
@@ -59,9 +58,8 @@ App({
                   if (this.systemInfoReadyCallback) {
                     this.systemInfoReadyCallback(res)
                   }
-                  console.log(res)
                   wx.request({
-                    url: 'https://sklang.cloudms.cn/insertOneUser',
+                    url: 'https://xxxx.xxxx.cn/insertOneUser',
                     method: 'POST',
                     data: {
                       userId: this.globalData.userId,

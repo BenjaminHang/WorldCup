@@ -181,7 +181,7 @@ Page({
       })
     }
     wx.request({
-      url: 'https://sklang.cloudms.cn',
+      url: 'https://xxxx.xxxxx.cn',
       method: 'POST',
       data: {
         icons: arr,
@@ -321,7 +321,7 @@ Page({
     //       avatarUrl: res.tempFilePaths[0]
     //     })
     //     wx.uploadFile({
-    //       url: 'https://sklang.cloudms.cn',
+    //       url: 'https://xxxx.xxxx.cn',
     //       filePath: res.tempFilePaths[0],
     //       name: 'imageFromAlbum',
     //     })

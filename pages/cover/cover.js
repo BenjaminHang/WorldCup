@@ -87,7 +87,7 @@ Page({
         footballClass: 'football-shoot'
       })
       wx.request({
-        url: 'https://sklang.cloudms.cn/insertOneUser',
+        url: 'https://xxxx.xxxx.cn/insertOneUser',
         method: 'POST',
         data: {
           userId: app.globalData.userId,
@@ -100,7 +100,6 @@ Page({
         success: res => {
           console.log(res)
         }
-
       })
     } else {
       console.log(e.detail.errMsg)

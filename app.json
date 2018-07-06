@@ -3,8 +3,8 @@
     "pages/cover/cover",
     "pages/avatar/avatar",
     "pages/prediction/prediction",
-    "pages/poster/poster",
-    "pages/cropper/cropper"
+    "pages/cropper/cropper",
+    "pages/poster/poster"
   ],
   "window":{
     "backgroundTextStyle":"light",
